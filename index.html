@@ -2,26 +2,18 @@
 
 <head>
     <title>Student Info Validator</title>
-
+   
 </head>
+
+
+<body>
+   <div id="main">
+<button onClick="addStudent()">Add Student Through Alert</button>
+   <div>
+
 <script>
-
-    class Student {
-        constructor(name, roll_no, age, gender) {
-            this.roll_no = roll_no;
-            this.name = name;
-            this.age = age;
-            this.gender = gender;
-        }
-
-        printStudentDetail() {
-            document.writeln("<b>Name</b>: " + this.name + "<br>", "<b>Age:</b> " + this.age + "<br>" + "<b>Gender:</b>" + this.gender + "<br>" + "<b>Roll no</b>: " + this.roll_no + "<br>")
-        }
-    }
-    Student.prototype.college = function () {
-        document.writeln("<b>College:</b> " + "VESIT")
-    }
-    name = prompt("Enter Name");
+   function addStudent()  {
+      name = prompt("Enter Name");
     roll_no = prompt("Enter Roll_no");
     age = prompt("Enter Age");
     gender = prompt("Enter Gender");
@@ -31,24 +23,39 @@
         else if (roll_no == 0) throw "Roll no cannot be zero";
         if (age < 17 || age > 22) throw "Enter valid age"
         else {
+           let mainDiv = document.getElementById('main')
+           
             var s1 = new Student(name, roll_no, age, gender);
-            document.writeln("<u>Details Entered in Prompt</u><br>");
-            s1.printStudentDetail();
-            s1.college();
+           mainDiv.innerHTML += "<br/><br/><h1>New Student Added</h1>"
+           mainDiv.innerHTML += "<h2>" + s1.name + "</h2>"
+           mainDiv.innerHTML += s1.printStudentDetail()
+           
+            
         }
     }
     catch (e) {
         document.writeln(e)
     }
-    document.writeln("<br><br><u>Student2 details</u><br>");
-    /*Object() constructor function*/
-    var s2 = new Student("Prasanna Sridharan", 56);
-    s2.age = 20;
-    s2.gender = "Male";
-    s2.printStudentDetail();
-    s2.college();
+   }
+    class Student {
+        constructor(name, roll_no, age, gender) {
+            this.roll_no = roll_no;
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+        }
 
-    /*object literal syntax*/
+        printStudentDetail() {
+            return ("<b>Name</b>: " + this.name + "<br>", "<b>Age:</b> " + this.age + "<br>" + "<b>Gender:</b>" + this.gender + "<br>" + "<b>Roll no</b>: " + this.roll_no + "<br>")
+        }
+    }
+    Student.prototype.college = function () {
+        document.writeln("<b>College:</b> " + "VESIT")
+    }
+
+   
+   /*
+   object literal syntax
     var s3 = {
         Name: "ABCD",
         age: 21,
@@ -60,9 +67,12 @@
         }
     };
     s3.printStudentDetail()
+   
+   */
+    
+    
 </script>
-
-<body>
 </body>
+
 
 </html>
